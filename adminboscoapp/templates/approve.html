@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Add Theater Button -->
+                <a href="" class="btn btn-primary">
+                    <i class="fa fa-plus"></i>
+                </a>
+<h2> Registration Approval</h2>
+
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Theater Name</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Owner Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Manager Name</th>
+                            <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for theater in app %}
+        <tr>
+            <td>{{ theater.theater_name }}</td>
+            <td><img src="{{ theater.theater_image.url }}" width="50" alt="Theater Image"></td>
+            <td>{{ theater.owner_name }}</td>
+            <td>{{ theater.user.username }}</td>
+            <td>{{ theater.password }}</td>
+            <td>{{ theater.phone_number }}</td>
+            <td>{{ theater.location }}</td>
+            <td>{{ theater.address }}</td>
+            <td>{{ theater.manager_name }}</td>
+          <td>
+            <a href="{% url 'adminapproval' theater.id %}">
+              <button style="color:green" class="fa fa-check"></button>
+            </a>
+            <a href="{% url 'adminreject' theater.id %}">
+              <button style="color:red" class="fa fa-close"></button>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

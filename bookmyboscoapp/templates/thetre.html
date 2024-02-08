@@ -1,0 +1,12 @@
+{% extends 'baseuser.html' %}
+
+{% block content %}
+<h2>Theaters Showing {{ movie.movie_name }}</h2>
+<ul>
+    {% for show in theaters %}
+        <li>{{ show.theater_name.theater_name }} - <a href="">Book Show</a></li>
+    {% empty %}
+        <p>No theaters are currently showing this movie.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

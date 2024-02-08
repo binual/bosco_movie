@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    /* Your existing CSS styles */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .thead-dark th {
+        color: #fff;
+        background-color: #343a40;
+    }
+
+    .verticle-middle {
+        vertical-align: middle;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .topnav input[type=text] {
+        float: right;
+        padding: 6px;
+        margin-top: 8px;
+        margin-right: 16px;
+        border: none;
+        font-size: 17px;
+    }
+
+    .topnav button {
+        float: right;
+        margin-top: 8px;
+        margin-right: 16px;
+        padding: 6px 10px;
+        background-color: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <a href="#" id="goBackButton" class="btn btn-light">
+            <span class="fa fa-arrow-left"></span>
+        </a>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Show List</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Nav tabs -->
+                        <div class="default-tab">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="profile">
+                                    <div class="pt-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered verticle-middle table-responsive-sm">
+                                                <div class="topnav">
+                                                    <div class="search-container">
+                                                        <form>
+                                                            <input type="text" name="q" placeholder="Search.." name="search">
+                                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th scope="col">Theater Name</th>
+                                                        <th scope="col">Movie Name</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Price</th>
+                                                        <th style="text-align:center">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for show in ct %}
+                                                    <tr>
+                                                        <td>{{ show.theater_name.theater_name }}</td>
+                                                        <td>{{ show.movie.movie_name }}</td>
+                                                        <td>{{ show.time }}</td>
+                                                        <td>{{ show.date }}</td>
+                                                        <td>{{ show.price }}</td>
+                                                        <td>
+                                                            <a href="">
+                                                                <i style="color:blue" class="fa fa-edit"></i>
+                                                            </a>
+                                                            <a href="">
+                                                                <i style="color:red" class="fa fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("goBackButton").addEventListener("click", function () {
+        window.history.back();
+    });
+</script>
+
+{% endblock %}

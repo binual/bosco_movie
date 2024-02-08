@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .topnav .search-container {
+        float: left;
+    }
+
+    .topnav input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .topnav .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .topnav .search-container button:hover {
+        background: #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+        .topnav .search-container {
+            float: none;
+        }
+
+        .topnav a,
+        .topnav input[type=text],
+        .topnav .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+
+        .topnav input[type=text] {
+            border: 1px solid #ccc;
+        }
+    }
+</style>
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <a href="#" id="goBackButton" class="btn btn-light">
+            <span class="fa fa-arrow-left"></span>
+        </a>
+        
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Movie List</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Nav tabs -->
+                        <div class="default-tab">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="profile">
+                                    <div class="pt-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered verticle-middle table-responsive-sm">
+                                                <div class="topnav">
+                                                    <div class="search-container">
+                                                        <form>
+                                                            <input type="text" name="q" placeholder="Search.." name="search">
+                                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <thead class="thead-dark">
+                                                    <tr style="color:black">
+                                                        <th scope="col">Theater Name</th>
+                                                        <th scope="col">Owner Name</th>
+                                                        <th scope="col">Movie Name</th>
+                                                        <th scope="col">Movie Trailer</th>
+                                                        <th scope="col">Release Date</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Rating</th>
+                                                        <th scope="col">Movie Poster</th>
+                                                        <th scope="col">Genre</th>
+                                                        <th scope="col">Duration</th>
+                                                        <th style="text-align:center">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for movie in ct %}
+                                                    <tr>
+                                                        <td>{{ movie.theater_name.theater_name }}</td>
+                                                        <td>{{ movie.theater_name.owner_name }}</td>
+                                                        <td>{{ movie.movie_name }}</td>
+                                                        <td>
+                                                            <video width="320" height="240" controls>
+                                                                <source src="{{ movie.movie_trailer.url }}" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                        </td>
+                                                        <td>{{ movie.movie_rdate }}</td>
+                                                        <td>{{ movie.movie_des }}</td>
+                                                        <td>{{ movie.movie_rating }}</td>
+                                                        <td><img src="{{ movie.movie_poster.url }}" alt="Movie Poster" width="50"></td>
+                                                        <td>{{ movie.movie_genre }}</td>
+                                                        <td>{{ movie.movie_duration }}</td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <i style="color:blue" class="fa fa-edit"></i>
+                                                            </a>
+                                                            <a href="{% url 'delete_movie' movie.id %}">
+                                                                <i style="color:red" class="fa fa-trash"></i>
+                                                            </a>
+                                                            
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("goBackButton").addEventListener("click", function () {
+        window.history.back();
+    });
+</script>
+{% endblock %}

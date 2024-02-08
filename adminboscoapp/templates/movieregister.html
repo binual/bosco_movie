@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register a Movie</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+{% if user.is_authenticated %}
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">Register A Movie</h4>
+                                    <form method="post" action="{% url 'add_movie' %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                        <div class="form-group">
+                                            <label for="theater_name">Theater Name:</label>
+                                            <input type="text" class="form-control" value="{{ user_theater.theater_name }}" name="theater_name" readonly required>
+                                            <input type="hidden" class="form-control" value="{{ user_theater.id }}" name="theater_id" readonly required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_name"><strong>Movie Name</strong></label>
+                                            <input type="text" class="form-control" name="movie_name" placeholder="Movie name" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_trailer"><strong>Movie Trailer (Video)</strong></label>
+                                            <input type="file" class="form-control" name="movie_trailer" accept="video/*" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_rdate"><strong>Release Date</strong></label>
+                                            <input type="date" class="form-control" name="movie_rdate">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_des"><strong>Description</strong></label>
+                                            <textarea class="form-control" name="movie_des" rows="3" placeholder="Movie description"></textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_rating"><strong>Rating</strong></label>
+                                            <input type="number" class="form-control" name="movie_rating" step="0.1" min="0" max="10">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_poster"><strong>Movie Poster</strong></label>
+                                            <input type="file" class="form-control" name="movie_poster" accept="image/*" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_genre"><strong>Genre</strong></label>
+                                            <select class="form-control" name="movie_genre">
+                                                <option value="Action">Action</option>
+                                                <option value="Comedy">Comedy</option>
+                                                <option value="Romance">Romance</option>
+                                                <!-- Add more genre options as needed -->
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="movie_duration"><strong>Duration</strong></label>
+                                            <select class="form-control" name="movie_duration">
+                                                <option value="2hr 30min">2hr 30min</option>
+                                                <option value="2hr 45min">2hr 45min</option>
+                                                <!-- Add more duration options as needed -->
+                                            </select>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% else %}
+    <p>You are not authenticated to access this page. Please <a href="{% url 'login' %}">login</a>.</p>
+{% endif %}
+</html>
+
+{% endblock %}

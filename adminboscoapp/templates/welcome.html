@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <h1 style="text-align:center"> Welcome To Bosco</h1>
+        
+        <!-- Add a button to view movies -->
+        <div style="text-align:center; margin-top: 20px;">
+            <a href="{% url 'view_movies' %}" class="btn btn-primary">View Movies</a>
+            <a href="{% url 'show_list' %}" class="btn btn-primary">View Show</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

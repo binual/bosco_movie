@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<style>
+.topnav .search-container {
+  float: left;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+</style>
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <a href="#" id="goBackButton" class="btn btn-light">
+            <span class="fa fa-arrow-left"></span> 
+        </a>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Theatre List</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Nav tabs -->
+                        <div class="default-tab">
+                           
+                        <div class="tab-content">
+                        
+                           
+                            <div class="tab-pane fade show active" id="profile">
+                            <div class="pt-4">
+                                <div class="table-responsive">
+                                        <table class="table table-bordered verticle-middle table-responsive-sm">
+                                        <div class="topnav">
+                                        <div class="search-container">
+                                            <form >
+                                            <input type="text" name="q" placeholder="Search.." name="search">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                            <thead class="thead-dark">
+                                                <tr style="color:black">
+                                                    <th scope="col">Theater Name</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Owner Name</th>
+                                                    <th scope="col">Username</th>
+                                                    <th scope="col">Password</th>
+                                                    <th scope="col">Phone Number</th>
+                                                    <th scope="col">Location</th>
+                                                    <th scope="col">Address</th>
+                                                    <th scope="col">Manager Name</th>
+                                                  
+                                                    <th style="text-align:center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for theater in ct %}
+                                                <tr>
+                                                    <td>{{ theater.theater_name }}</td>
+                                                    <td><img src="{{ theater.theater_image.url }}" width="50" alt="Theater Image"></td>
+                                                    <td>{{ theater.owner_name }}</td>
+                                                    <td>{{ theater.username }}</td>
+                                                    <td>{{ theater.password }}</td>
+                                                    <td>{{ theater.phone_number }}</td>
+                                                    <td>{{ theater.location }}</td>
+                                                    <td>{{ theater.address }}</td>
+                                                    <td>{{ theater.manager_name }}</td>
+                                                    <td>
+                                                       
+                                                            <a href="{% url 'edit_theater' theater.id %}">
+                                                                <i style="color:blue" class="fa fa-edit"></i> 
+                                                            </a>
+                                                            <a href="{% url 'delete_theater' theater.id %}">
+                                                                <i style="color:red" class="fa fa-trash"></i> 
+                                                            </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+{% endblock %}

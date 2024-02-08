@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'bosco_movie',
         'USER':'root',
         'PASSWORD':'',
-        'HOST':'localhost',
+        'HOST':'bosco.cf2rj0lbckjo.us-east-1.rds.amazonaws.com',
         'PORT':'3306',
     }
 }

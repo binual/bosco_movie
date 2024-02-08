@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-igcfv!jy01rv@w$g7tb6568g99jn*c88f@6)s$383xh!q0i#at
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['54.227.2.155']
 
 
 # Application definition
@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bosco_movie',
-        'USER':'root',
-        'PASSWORD':'',
+        'USER':'admin',
+        'PASSWORD':'puliyalil#52',
         'HOST':'bosco.cf2rj0lbckjo.us-east-1.rds.amazonaws.com',
         'PORT':'3306',
     }
